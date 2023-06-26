@@ -1,2 +1,3 @@
 # luminol-website
-https://luminol.dev
+
+<https://luminol.dev>
