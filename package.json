@@ -1,0 +1,10 @@
+{
+  "name": "luminol-website",
+  "version": "0.1.0",
+  "description": "Web document for the Luminol Project",
+  "main": "src/main.ts",
+  "repository": "https://github.com/Astrabit-ST/luminol-website/",
+  "author": "Lily Madeline Lyons <lily@nowaffles.com>",
+  "license": "GPLv3",
+  "private": true
+}
