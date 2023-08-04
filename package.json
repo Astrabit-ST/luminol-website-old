@@ -6,5 +6,9 @@
   "repository": "https://github.com/Astrabit-ST/luminol-website/",
   "author": "Lily Madeline Lyons <lily@nowaffles.com>",
   "license": "GPLv3",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
 }
