@@ -1,0 +1,33 @@
+.xp {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 14px;
+
+	.header {
+		background: $luna-background;
+		color: #ffffff;
+
+		width: 100%;
+		padding: .3em;
+
+		border-bottom: 1px solid #fff;
+
+		.logo {
+			margin: -0.4em;
+
+			box-shadow: inset 10em .5em 3.5em -3.5em #fff;
+		}
+	}
+}
+
+.xp-bullet-point {
+	background-color: #77dd77;
+	box-shadow: black;
+
+	border-radius: 50%;
+
+	width: 1%;
+	height: 1%;
+
+	text-align: center;
+	font-size: 1.5em;
+}
