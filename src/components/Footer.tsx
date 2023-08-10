@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default () => {
+export const Footer = () => {
 	return (
 		<footer>
 			<p>Developed by Astrabit Studios.</p>
