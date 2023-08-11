@@ -15,6 +15,12 @@
     1. [Exports](#es_exports)
         1. [Default Exports](#es_exports_default)
         1. [Export Mutability](#es_exports_mut)
+1. [Formatting](#fmt)
+    1. [Semicolons at the end of lines](#fmt_semicolons)
+    1. [Braces in control statements](#fmt_braces)
+    1. [Literals](#fmt_literals)
+        1. [Arrays](#fmt_literals_objects)
+        1. [Classes](#fmt_literal_class)
 
 ## Guidelines
 
@@ -47,7 +53,49 @@
 - [2](#es_exports) **Exports**
     <a id="es_exports_default"></a>
     - [2.1](#es_exports_default) **Default Exports**: Do not use default exports. Importing modules must give a name to these values, which can lead to inconsistencies in naming across modules.
+    <a id="es_imports_mut"></a>
     - [2.2](#es_imports_mut) **Export Mutability**: Exported variables must not be mutated outside of module initialization.
+
+<a id="fmt"></a>
+- [3](#fmt) **Formatting**
+    <a id="fmt_semicolons"></a>
+    - [3.1](#fmt_semicolons) **Semicolons at the end of line**: In TypeScript files, do not use semicolons at the end of the line.
+    <a id="fmt_braces"></a>
+    - [3.2](#fmt_braces) **Braces in control statements**: Braces are required in all control statements, even if the body contains only a single statement. The first statement of a non-empty block must begin on it's own line.
+        - **Exception**: A simple if statement that can fit entirely on a single line with no wrapping (and that doesn’t have an else) may be kept on a single line with no braces when it improves readability. This is the only case in which a control structure may omit braces and newlines.
+    <a id="fmt_literals"></a>
+    - [3.3](#fmt_literals) **Literals**
+        <a id="fmt_literal_objects"></a>
+        - [3.3.1](#fmt_literal_objects) **Arrays and objects**: Any array or object literal may optionally be formatted as if it were a “block-like construct.”
+            - **Example**:
+            ```ts
+                const a = [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+
+                const a =
+                    [0, 1, 2, 3, 4]
+            ```
+        <a id="fmt_literal_class"></a>
+        - [3.3.2](#fmt_literal_class) **Classes**: Any class literal should be formatted as it it were a "block-like" construct.
+            - **Example**:
+            ```ts
+            class Foo {
+                constructor() {
+                    this.x = 55.12732
+                    this.y = 37.8082346
+                    this.z = 17.32
+                }
+
+                toString(): string {
+                    return `${this.x}, ${this.y}, ${this.z}`
+                }
+            }            
+            ``` 
 
 ## Credits
  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for this document's format
