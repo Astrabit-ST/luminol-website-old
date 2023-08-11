@@ -58,15 +58,17 @@
 
 <a id="fmt"></a>
 - [3](#fmt) **Formatting**
+    <a id="fmt_indentation"></a>
+    - [3.1](#fmt_indentation) **Indentation**: Each time a new statement is opened, the indent increases by 4 spaces. The indent level applies to both code and comments.
     <a id="fmt_semicolons"></a>
-    - [3.1](#fmt_semicolons) **Semicolons at the end of line**: In TypeScript files, do not use semicolons at the end of the line.
+    - [3.2](#fmt_semicolons) **Semicolons at the end of line**: In TypeScript files, do not use semicolons at the end of the line.
     <a id="fmt_braces"></a>
-    - [3.2](#fmt_braces) **Braces in control statements**: Braces are required in all control statements, even if the body contains only a single statement. The first statement of a non-empty block must begin on it's own line.
+    - [3.3](#fmt_braces) **Braces in control statements**: Braces are required in all control statements, even if the body contains only a single statement. The first statement of a non-empty block must begin on it's own line.
         - **Exception**: A simple if statement that can fit entirely on a single line with no wrapping (and that doesn’t have an else) may be kept on a single line with no braces when it improves readability. This is the only case in which a control structure may omit braces and newlines.
     <a id="fmt_literals"></a>
-    - [3.3](#fmt_literals) **Literals**
+    - [3.4](#fmt_literals) **Literals**
         <a id="fmt_literal_objects"></a>
-        - [3.3.1](#fmt_literal_objects) **Arrays and objects**: Any array or object literal may optionally be formatted as if it were a “block-like construct.”
+        - [3.4.1](#fmt_literal_objects) **Arrays and objects**: Any array or object literal may optionally be formatted as if it were a “block-like construct.”
             - **Example**:
             ```ts
                 const a = [
@@ -81,7 +83,7 @@
                     [0, 1, 2, 3, 4]
             ```
         <a id="fmt_literal_class"></a>
-        - [3.3.2](#fmt_literal_class) **Classes**: Any class literal should be formatted as it it were a "block-like" construct.
+        - [3.4.2](#fmt_literal_class) **Classes**: Any class literal should be formatted as it it were a "block-like" construct.
             - **Example**:
             ```ts
             class Foo {
@@ -95,7 +97,7 @@
                     return `${this.x}, ${this.y}, ${this.z}`
                 }
             }            
-            ``` 
+            ```
 
 ## Credits
  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for this document's format
