@@ -24,6 +24,10 @@
     1. [Semicolons at the end of lines](#stmt_semicolons)
     1. [One statement per line](#stmt_one_per_line)
     1. [Column limit](#stmt_column_limit)
+1. [Whitespaces](#ws)
+    1. [Horizontal alignment](#ws_hoz_align)
+    1. [Function arguments](#ws_fn_args)
+    1. [Grouping parentheses](#ws_groups)
 
 ## Guidelines
 
@@ -108,6 +112,15 @@
 - [4.2](#stmt_one_per_line) **One statement per line**: Each statement is followed by a line-break.
 <a id="stmt_column_limit"></a>
 - [4.3](#stmt_column_limit) **Column limit**: JavaScript code has a column limit of 80 characters.
+
+<h3 id="ws">5. Whitespaces</h3>
+
+<a id="ws_hoz_align"></a>
+- [5.1](#ws_hoz_align) **Horizontal alignment**: Horizontal alignment is discouraged to be used in the codebase. You can use it, it's just not recommended.
+<a id="ws_fn_args"></a>
+- [5.2](#ws_fn_args) **Function arguments**: It's recommended to put all arguments in the same line as the function name. If that's not possible and all arguments will exceed the column limit of 80 characters, they must be line wrapped. You can put each argument on it's own line to increase readability.
+<a id="ws_groups"></a>
+- [5.3](#ws_groups) **Grouping parentheses**: Optional grouping parentheses are omitted only when the author and reviewer agree that there is no reasonable chance that the code will be misinterpreted without them, nor would they have made the code easier to read. Do not use grouping parentheses around the entire expression following `delete`, `typeof`, `void`, `return`, `throw`, `case`, `in`, `of` and `yield`.
 
 ## Credits
  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for this document's format
