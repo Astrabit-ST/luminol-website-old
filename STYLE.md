@@ -28,6 +28,10 @@
     1. [Horizontal alignment](#ws_hoz_align)
     1. [Function arguments](#ws_fn_args)
     1. [Grouping parentheses](#ws_groups)
+1. [Variable declarations](#var)
+    1. [Use of `const` and `let`](#var_use_of_const_let)
+    1. [One variable per declaration](#var_one_per_decl)
+    1. [Types](#var_types)
 
 ## Guidelines
 
@@ -121,6 +125,18 @@
 - [5.2](#ws_fn_args) **Function arguments**: It's recommended to put all arguments in the same line as the function name. If that's not possible and all arguments will exceed the column limit of 80 characters, they must be line wrapped. You can put each argument on it's own line to increase readability.
 <a id="ws_groups"></a>
 - [5.3](#ws_groups) **Grouping parentheses**: Optional grouping parentheses are omitted only when the author and reviewer agree that there is no reasonable chance that the code will be misinterpreted without them, nor would they have made the code easier to read. Do not use grouping parentheses around the entire expression following `delete`, `typeof`, `void`, `return`, `throw`, `case`, `in`, `of` and `yield`.
+
+<h3 id="var">6. Variable declarations</h3>
+
+- [5.1](#var_use_of_const_let) **Use of `const` and `let`**: Declare all local variables with either `const` or `let` keyword. Use `const` by default, unless a variable needs to be reassigned. The `var` keyword must not be used.
+- [5.2](#var_one_per_decl) **One variable per declaration**: Every local variable declaration declares only one variable.
+- [5.3](#var_types) **Types**: The prime feature of TypeScript is the static typing system. Add types when the type of variable is not obvious by looking at it's value.
+    - **Example**:
+    ```ts
+    let string = "Hello, world!"
+
+    let ary: Array<number> = [0, 2, 4, 6]
+    ```
 
 ## Credits
  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for this document's format
