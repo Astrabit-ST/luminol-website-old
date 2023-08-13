@@ -35,6 +35,12 @@
 1. [Array literals](#ary)
    1. [`Array` constructor](#ary_constructor)
    1. [Spread operator](#ary_spread_op)
+1. [Naming](#naming)
+   1. [Identifiers](#naming_ident)
+      1. [Class names](#naming_ident_class)
+      1. [Method names](#naming_ident_method)
+      1. [Enumeration names](#naming_ident_enum)
+      1. [Constant names](#naming_ident_const)
 
 ## Guidelines
 
@@ -131,8 +137,11 @@
 
 <h3 id="var">6. Variable declarations</h3>
 
+<a id="var_use_of_const_let"></a>
 - [6.1](#var_use_of_const_let) **Use of `const` and `let`**: Declare all local variables with either `const` or `let` keyword. Use `const` by default, unless a variable needs to be reassigned. The `var` keyword must not be used.
+<a id="var_one_per_decl"></a>
 - [6.2](#var_one_per_decl) **One variable per declaration**: Every local variable declaration declares only one variable.
+<a id="var_types"></a>
 - [6.3](#var_types) **Types**: The prime feature of TypeScript is the static typing system. Add types when the type of variable is not obvious by looking at it's value.
     - **Example**:
     ```ts
@@ -149,6 +158,19 @@
 <a id="ary_spread_op"></a>
 - [7.2](#ary_spread_op) **Spread operator**: Array literals may include the spread operator (`...`) to flatten elements out of one or more other iterables. The spread operator should be used instead of more awkward constructor with `Array.prototype`.
 
+<h3 id="naming">8. Naming</h3>
+
+<a id="naming_ident"></a>
+- [7.1](#naming_ident) **Identifiers**: Identifiers use only ASCII letters, digits and underscore characters. When making an identifier, give it as descriptive name as possible. Do not use using abbreviations that are ambiguous and avoid using those that are unfamiliar to readers outside the project.
+  <a id="naming_ident_class"></a>
+  - [7.1.1](#naming_ident_class) **Class names**: Classes and interfaces are written in upper camel case. Parameter names should be written in lower camel case.
+  <a id="naming_ident_method"></a>
+  - [7.1.2](#naming_ident_method) **Method names**: Method names are written in lower camel case. Usually, method names are verbs or verb phrases. Getters must be named as `get[Variable Name]` (`is[Variable Name]` or `has[VariableName]` for boolean values) and setters as `set[VariableName]`.
+  <a id="naming_ident_enum"></a>
+  - [7.1.3](#naming_ident_enum) **Enumeration names**: Enumeration names are written in upper camel case, same as classes. Items inside the enumeration must also be named in upper camel case format.
+  <a id="naming_ident_const"></a>
+  - [7.1.4](#naming_ident_const) **Constant names**: Constants must be written in uppercase, with underscores to separate parts of the name.
+    - **Explanation of the "constant"**: In current context, "constant" is a `const` declaration at module level that contains a value which is guranteed to be never modified.
 ## Credits
  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for this document's format
  - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html#source-file-structure) for most rulesets.
