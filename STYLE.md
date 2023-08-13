@@ -32,6 +32,9 @@
     1. [Use of `const` and `let`](#var_use_of_const_let)
     1. [One variable per declaration](#var_one_per_decl)
     1. [Types](#var_types)
+1. [Array literals](#ary)
+   1. [`Array` constructor](#ary_constructor)
+   1. [Spread operator](#ary_spread_op)
 
 ## Guidelines
 
@@ -128,15 +131,23 @@
 
 <h3 id="var">6. Variable declarations</h3>
 
-- [5.1](#var_use_of_const_let) **Use of `const` and `let`**: Declare all local variables with either `const` or `let` keyword. Use `const` by default, unless a variable needs to be reassigned. The `var` keyword must not be used.
-- [5.2](#var_one_per_decl) **One variable per declaration**: Every local variable declaration declares only one variable.
-- [5.3](#var_types) **Types**: The prime feature of TypeScript is the static typing system. Add types when the type of variable is not obvious by looking at it's value.
+- [6.1](#var_use_of_const_let) **Use of `const` and `let`**: Declare all local variables with either `const` or `let` keyword. Use `const` by default, unless a variable needs to be reassigned. The `var` keyword must not be used.
+- [6.2](#var_one_per_decl) **One variable per declaration**: Every local variable declaration declares only one variable.
+- [6.3](#var_types) **Types**: The prime feature of TypeScript is the static typing system. Add types when the type of variable is not obvious by looking at it's value.
     - **Example**:
     ```ts
     let string = "Hello, world!"
 
     let ary: Array<number> = [0, 2, 4, 6]
     ```
+
+<h3 id="ary">7. Array literals</h3>
+
+<a id="ary_constructor"></a>
+- [7.1](#ary_constructor) **`Array` constructor**: Do not use the variadic `Array` constructor, use a literal instead.
+  - **Exception**: Allocating an array of a given length is allowed when appropriate.
+<a id="ary_spread_op"></a>
+- [7.2](#ary_spread_op) **Spread operator**: Array literals may include the spread operator (`...`) to flatten elements out of one or more other iterables. The spread operator should be used instead of more awkward constructor with `Array.prototype`.
 
 ## Credits
  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for this document's format
