@@ -1,176 +1,232 @@
 # luminol.dev code style guidelines
 
-## Table of contents
+This document defines how Luminol's web page's codebase should be structured, formatted and written in a ruleset format.
 
-1. [Source files](#source-files)
-    1. [Encoding](#source_encoding)
-    1. [Naming scheme](#source_naming)
-        1. [Documentation](#source_naming_doc)
-        1. [TypeScript Code](#source_naming_ts)
-        1. [TypeScript XML Code](#source_naming_tsx)
-1. [ECMAScript Modules](#esmodules)
-    1. [Imports](#es_imports)
-        1. [File Extensions](#es_imports_ext)
-        1. [Duplicate Imports](#es_imports_duplicate)
-    1. [Exports](#es_exports)
-        1. [Default Exports](#es_exports_default)
-        1. [Export Mutability](#es_exports_mut)
-1. [Formatting](#fmt)
-    1. [Braces in control statements](#fmt_braces)
-    1. [Literals](#fmt_literals)
-        1. [Arrays](#fmt_literal_objects)
-        1. [Classes](#fmt_literal_class)
-1. [Statements](#stmt)
-    1. [Semicolons at the end of lines](#stmt_semicolons)
-    1. [One statement per line](#stmt_one_per_line)
-    1. [Column limit](#stmt_column_limit)
-1. [Whitespaces](#ws)
-    1. [Horizontal alignment](#ws_hoz_align)
-    1. [Function arguments](#ws_fn_args)
-    1. [Grouping parentheses](#ws_groups)
-1. [Variable declarations](#var)
-    1. [Use of `const` and `let`](#var_use_of_const_let)
-    1. [One variable per declaration](#var_one_per_decl)
-    1. [Types](#var_types)
-1. [Array literals](#ary)
-   1. [`Array` constructor](#ary_constructor)
-   1. [Spread operator](#ary_spread_op)
-1. [Naming](#naming)
-   1. [Identifiers](#naming_ident)
-      1. [Class names](#naming_ident_class)
-      1. [Method names](#naming_ident_method)
-      1. [Enumeration names](#naming_ident_enum)
-      1. [Constant names](#naming_ident_const)
+## Table of contents
+1. [Source files](#src)
+   1. [Encoding](#src_encoding)
+   2. [Naming](#src_naming)
+      1. [TypeScript Code](#src_naming_ts)
+      2. [TypeScript XML Code](#src_naming_tsx)
+      3. [Markdown Documentation Files](#src_naming_md)
+2. [Code Conventions](#ts)
+   1. [Naming](#ts_ident)
+      1. [Class names](#ts_ident_class)
+         1. [Property names](#ts_ident_class_property)
+      2. [Method names](#ts_ident_method)
+      3. [Enumeration names](#ts_ident_enum)
+      4. [Constant names](#ts_ident_const)
+   2. [Formatting](#ts_fmt)
+      1. [Indentation](#ts_fmt_indent)
+      2. [Block](#ts_fmt_block)
+      3. [Literals](#ts_fmt_literal)
+         1. [Array and Object literals](#ts_fmt_literal_objects)
+         2. [Classes](#ts_fmt_literal_class)
+      4. [Statements](#ts_fmt_stmt)
+         1. [Semicolon at the end of the statement](#ts_fmt_stmt_semicolons)
+         2. [One statement per line](#ts_fmt_stmt_one_per_line)
+         3. [Column limit](#ts_fmt_stmt_column_limit)
+         4. [`if`, `else if` and `else`](#ts_fmt_stmt_ifelse)
+         5. [`switch`](#ts_fmt_stmt_switch)
+         6. [`do` and `with`](#ts_fmt_stmt_do_and_with)
+         7. [`try`](#ts_fmt_stmt_try)
+   3. [ECMAScript modules](#ts_es)
+      1. [Imports](#ts_es_imports)
+         1. [File extensions](#ts_es_imports_fileext)
+         2. [Duplicate imports](#ts_es_imports_duplicate)
+         3. [Standard Library](#ts_es_imports_sl)
+      2. [Exports](#ts_es_exports)
+         1. [Default exports](#ts_es_exports_default)
+         2. [Export mutability](#ts_es_exports_mut)
+   4. [Declarations](#ts_decl)
+      1. [Variables](#ts_decl_var)
+         1. [Declaration before use](#ts_decl_var_use)
+         2. [Use of `const` and `let`](#ts_decl_var_const)
+      2. [Functions](#ts_decl_fn)
+         1. [Inner functions](#ts_decl_fn_inner)
 
 ## Guidelines
 
-<h3 id="source-files">1. Source files</h3>
+### [1](#src) **Source files** <a id="src"></a>
 
-<a id="source_encoding"></a>
+This section defines how human-readable, plain-text files should be named, edited and perceived.
 
-- [1.1](#source_encoding) **Encoding**: All source files in this repository must use UTF-8 encoding.
+- [1.1](#src_encoding) **Encoding**: All source files must be encoded with UTF-8 (without BOM, for the reason why see the official [**Unicode Specification, Section 2.6**](http://www.unicode.org/versions/Unicode5.0.0/ch02.pdf)). <a id="src_encoding"></a>
+- [1.2](#src_naming) **Naming** <a id="src_naming"></a>
+  - [1.2.1](#src_naming_ts) **TypeScript Code**: TypeScript Code should be stored as `.ts` files. File names are written in lower camel case. <a id="src_naming_ts"></a>
+  - [1.2.2](#src_naming_tsx) **TypeScript XML Code**: TypeScript XML Code should be stored as `.tsx` files. File names are written in upper camel case. <a id="src_naming_tsx"></a>
+  - [1.2.3](#src_naming_md) **Markdown Documentation Files**: Documentation should be stored as `.md` files. File names are written in uppercase, with underscores to separate parts of the name. <a id="src_naming_md"></a>
+  
+### [2](#ts) **Code Conventions** <a id="ts"></a>
 
-<a id="source_naming"></a>
+This section defines how TypeScript and TypeScript XML code should be formatted and written.
 
-- [1.2](#source_naming) **Naming scheme**
-    <a id="source_naming_doc"></a>
-    - [1.2.1](#source_naming_doc) **Documentation**: Documentation files located in top-level must have an uppercase name. Otherwise, the file should start with an uppercase letter and all spaces (` `) should be replaced with underscores (`_`).
-    <a id="source_naming_ts"></a>
-    - [1.2.2](#source_naming_ts) **TypeScript Code**: File names should be all lowercase. All spaces (` `) should be replaced with underscores (`_`).
-    <a id="source_naming_tsx"></a>
-    - [1.2.3](#source_naming_tsx) **TypeScript XML Code**: File names should have an initial character be uppercase. All spaces (` `) should be replaced with underscores (`_`).
-
-<h3 id="esmodules">2. ECMAScript Modules</h3>
-
-<a id="es_imports"></a>
-- [1](#es_imports) **Imports**
-    <a id="es_imports_ext"></a>
-    - [1.1](#es_imports_ext) **File Extensions**: Omit .ts, .tsx, .js and .jsx extensions in `import` statements.
-    <a id="es_imports_duplicate"></a>
-    - [1.2](#es_imports_duplicate) **Duplicate Imports**: Do not import the same module mulitple times.
-
-<a id="es_exports"></a>
-- [2](#es_exports) **Exports**
-    <a id="es_exports_default"></a>
-    - [2.1](#es_exports_default) **Default Exports**: Do not use default exports. Importing modules must give a name to these values, which can lead to inconsistencies in naming across modules.
-    <a id="es_exports_mut"></a>
-    - [2.2](#es_imports_mut) **Export Mutability**: Exported variables must not be mutated outside of module initialization.
-
-<a id="fmt"></a>
-- [3](#fmt) **Formatting**
-    <a id="fmt_indentation"></a>
-    - [3.1](#fmt_indentation) **Indentation**: Each time a new statement is opened, the indent increases by 4 spaces. The indent level applies to both code and comments.
-    <a id="fmt_braces"></a>
-    - [3.2](#fmt_braces) **Braces in control statements**: Braces are required in all control statements, even if the body contains only a single statement. The first statement of a non-empty block must begin on it's own line.
-        - **Exception**: A simple if statement that can fit entirely on a single line with no wrapping (and that doesn’t have an else) may be kept on a single line with no braces when it improves readability. This is the only case in which a control structure may omit braces and newlines.
-    <a id="fmt_literals"></a>
-    - [3.3](#fmt_literals) **Literals**
-        <a id="fmt_literal_objects"></a>
-        - [3.3.1](#fmt_literal_objects) **Arrays and objects**: Any array or object literal may optionally be formatted as if it were a “block-like construct.”
-            - **Example**:
-            ```ts
-                const a = [
-                    0,
-                    1,
-                    2,
-                    3,
-                    4
-                ]
-
-                const a =
-                    [0, 1, 2, 3, 4]
-            ```
-        <a id="fmt_literal_class"></a>
-        - [3.3.2](#fmt_literal_class) **Classes**: Any class literal should be formatted as it it were a "block-like" construct.
-            - **Example**:
-            ```ts
-            class Foo {
-                constructor() {
-                    this.x = 55.12732
-                    this.y = 37.8082346
-                    this.z = 17.32
-                }
-
-                toString(): string {
-                    return `${this.x}, ${this.y}, ${this.z}`
-                }
-            }            
-            ```
-
-<h3 id="stmt">4. Statements</h3>
-
-<a id="stmt_semicolons"></a>
-- [4.1](#stmt_semicolons) **Semicolons at the end of line**: In TypeScript files, do not use semicolons at the end of the line.
-<a id="stmt_one_per_line"></a>
-- [4.2](#stmt_one_per_line) **One statement per line**: Each statement is followed by a line-break.
-<a id="stmt_column_limit"></a>
-- [4.3](#stmt_column_limit) **Column limit**: JavaScript code has a column limit of 80 characters.
-
-<h3 id="ws">5. Whitespaces</h3>
-
-<a id="ws_hoz_align"></a>
-- [5.1](#ws_hoz_align) **Horizontal alignment**: Horizontal alignment is discouraged to be used in the codebase. You can use it, it's just not recommended.
-<a id="ws_fn_args"></a>
-- [5.2](#ws_fn_args) **Function arguments**: It's recommended to put all arguments in the same line as the function name. If that's not possible and all arguments will exceed the column limit of 80 characters, they must be line wrapped. You can put each argument on it's own line to increase readability.
-<a id="ws_groups"></a>
-- [5.3](#ws_groups) **Grouping parentheses**: Optional grouping parentheses are omitted only when the author and reviewer agree that there is no reasonable chance that the code will be misinterpreted without them, nor would they have made the code easier to read. Do not use grouping parentheses around the entire expression following `delete`, `typeof`, `void`, `return`, `throw`, `case`, `in`, `of` and `yield`.
-
-<h3 id="var">6. Variable declarations</h3>
-
-<a id="var_use_of_const_let"></a>
-- [6.1](#var_use_of_const_let) **Use of `const` and `let`**: Declare all local variables with either `const` or `let` keyword. Use `const` by default, unless a variable needs to be reassigned. The `var` keyword must not be used.
-<a id="var_one_per_decl"></a>
-- [6.2](#var_one_per_decl) **One variable per declaration**: Every local variable declaration declares only one variable.
-<a id="var_types"></a>
-- [6.3](#var_types) **Types**: The prime feature of TypeScript is the static typing system. Add types when the type of variable is not obvious by looking at it's value.
+- [2.1](#ts_naming) **Naming**: Identifiers use only ASCII letters, digits and underscore characters. Identifiers should not consist of ambiguous abbreviations. <a id="ts_naming"></a>
+  - [2.1.1](#ts_naming_class) **Class names**: Class names should be written in upper camel case and should avoid using underscores. <a id="ts_naming_class"></a>
+    - [2.1.1.1](#ts_naming_class_property) **Property names**: Class property names should be written in upper camel case and must not use underscores. <a id="ts_naming_class_property"></a>
     - **Example**:
-    ```ts
-    let string = "Hello, world!"
+      ```ts
+      class Calculator {
+         private resultValue: number;
 
-    let ary: Array<number> = [0, 2, 4, 6]
-    ```
+         constructor(firstValue: number, secondValue: number) {
+            this.resultValue = firstValue + secondValue
+         }
 
-<h3 id="ary">7. Array literals</h3>
+         getResult(): number {
+            return this.resultValue
+         }
+         isResultEven(): boolean {
+            return this.resultValue % 2 == 0
+         }
+      }
+      ```
+  - [2.1.2](#ts_naming_method) Method names should be written in lower camel case. Getters must be named as `getFoo` (`isFoo` or `hasFoo` if the return/argument value is a boolean) and setters as `setFoo`. <a id="ts_naming_method"></a>
+    - **Example**:
+      ```ts
+      function greet(name: string): void {
+         console.log(`Helo, ${name}!`)
+      }
+      ```
+   - [2.1.3](#ts_naming_enum) **Enumeration names**: Enumeration names should be written in upper camel case, similar to classes. <a id="ts_naming_enum"></a>
+     - **Example**:
+         ```ts
+         enum Direction {
+            Up = 2,
+            Down = 8,
+            Left = 4,
+            Right = 6
+         }
+         ```
+   - [2.1.4](#ts_naming_const) **Constant names**: Constant names should be written in uppercase, with underscores being used to separate parts of the name. <a id="ts_naming_const"></a>
+     - **Definition of "constant**: In the current context, "constant" refers to a module-level `const` declaration containing containing a value which is guranteed to be never mutated.
+     - **Example**:
+         ```ts
+         const GITHUB_ORG_URL = 'https://github.com/Astrabit-ST'
 
-<a id="ary_constructor"></a>
-- [7.1](#ary_constructor) **`Array` constructor**: Do not use the variadic `Array` constructor, use a literal instead.
-  - **Exception**: Allocating an array of a given length is allowed when appropriate.
-<a id="ary_spread_op"></a>
-- [7.2](#ary_spread_op) **Spread operator**: Array literals may include the spread operator (`...`) to flatten elements out of one or more other iterables. The spread operator should be used instead of more awkward constructor with `Array.prototype`.
+         function getLuminolGitHubLink(): string {
+            return `${GITHUB_ORG_URL}/Luminol`
+         }
+         ```
+- [2.2](#ts_fmt) **Formatting** <a id="ts_fmt"></a>
+  - [2.2.1](#ts_fmt_indent) **Indentation**: Each time a new statement is opened, the indent increases by 4 spaces. The indent level applies to both code and comments. <a id="ts_fmt_indent"></a>
+  - [2.2.2](#ts_fmt_block) **Block**: Code brackets (braces, `{}`) are required in all control statements, even if the body contains only one statement. <a id="ts_fmt_block"></a>
+    - **Exception**: A simple `if` statement that can fit entirely on a single line with no wrapping (and that doesn’t have an else) may be kept on a single line with no braces when it improves readability. This is the only case in which a control structure may omit braces and newlines.
+  - [2.2.3](#ts_fmt_literal) **Literals** <a id="ts_fmt_literal"></a>
+    - [2.2.3.1](#ts_fmt_literal_objects) **Array and Object literals**: Any array or object literal may be optionally constructed to look like a "block". <a id="ts_fmt_literal_objects"></a>
+      - **Example**:
+         ```ts
+         const numbers = [
+            0,
+            1,
+            2,
+            3,
+            4
+         ]
 
-<h3 id="naming">8. Naming</h3>
+         const contact = {
+            'name': 'John',
+            'number': '+1 xxx-xxx-xx'
+         }
+         ```
+    - [2.2.3.2](#ts_fmt_literal_class) **Classes**: Any class literal should be formatted as it it were a "block-like" construct. <a id="ts_fmt_literal_class"></a>
+      - **Example**:
+         ```ts
+         class Foo {
+            constructor() {}
+            isBar(): boolean {
+               return false
+            }
+         }
+         ```
+  - [2.2.4](#ts_fmt_stmt) **Statements** <a id="ts_fmt_stmt"></a>
+    - [2.2.4.1](#ts_fmt_stmt_semicolons) **Semicolon at the end of the statement**: Semicolons at the end of any statement must be omitted. <a id="ts_fmt_stmt_semicolons"></a>
+    - [2.2.4.2](#ts_fmt_stmt_one_per_line): **One statement per line**: Each line should contain only one statement. <a id="ts_fmt_stmt_one_per_line"></a>
+    - [2.2.4.3](#ts_fmt_stmt_column_limit): **Column limit**: Code lines that contain more than 80 characters must be line wrapped. <a id="ts_fmt_stmt_column_limit"></a>
+    - [2.2.4.4](#ts_fmt_stmt_ifelse) **`If`, `else if` and `else`**: Any `if`/`else` statement must not contain a whitespace after an `if` keyword, before and after group parenthesis of the parameter list. However, `if` statements must have one whitespace after the closing group parentheses (`)`). Each new line in brackets must be indented by 4 spaces. <a id="ts_fmt_stmt_ifelse"></a>
+      - **Example**:
+         ```ts
+         const isTrue = true
 
-<a id="naming_ident"></a>
-- [7.1](#naming_ident) **Identifiers**: Identifiers use only ASCII letters, digits and underscore characters. When making an identifier, give it as descriptive name as possible. Do not use using abbreviations that are ambiguous and avoid using those that are unfamiliar to readers outside the project.
-  <a id="naming_ident_class"></a>
-  - [7.1.1](#naming_ident_class) **Class names**: Classes and interfaces are written in upper camel case. Parameter names should be written in lower camel case.
-  <a id="naming_ident_method"></a>
-  - [7.1.2](#naming_ident_method) **Method names**: Method names are written in lower camel case. Usually, method names are verbs or verb phrases. Getters must be named as `get[Variable Name]` (`is[Variable Name]` or `has[VariableName]` for boolean values) and setters as `set[VariableName]`.
-  <a id="naming_ident_enum"></a>
-  - [7.1.3](#naming_ident_enum) **Enumeration names**: Enumeration names are written in upper camel case, same as classes. Items inside the enumeration must also be named in upper camel case format.
-  <a id="naming_ident_const"></a>
-  - [7.1.4](#naming_ident_const) **Constant names**: Constants must be written in uppercase, with underscores to separate parts of the name.
-    - **Explanation of the "constant"**: In current context, "constant" is a `const` declaration at module level that contains a value which is guranteed to be never modified.
+         if(isTrue) {
+            console.log('True!')
+         }
+         ```
+    - [2.2.4.5](#ts_fmt_stmt_switch) **`switch`**: Same rules apply as to the `if` statement. When a new `case` block is opened, the block itself and the code inside of it must be indented by 4 spaces and must end with a `break` keyword. <a id="ts_fmt_stmt_do_and_with"></a>
+      - **Example**:
+         ```ts
+         enum Color {
+            Red,
+            Green,
+            Blue,
+            White
+         }
+
+         const color = Color.Red
+
+         switch(color) {
+            case Color.Red:
+               /* ... */
+               break
+            case Color.Green:
+               /* ... */
+               break
+            case Color.Blue:
+               /* ... */
+               break
+            default:
+               /* ... */
+         }
+         ```
+    - [2.2.4.6](#ts_fmt_stmt_do_and_with) **`do` and `with`**: `do` and `with` statements must not be used. <a id="ts_fmt_stmt_do_and_with"></a>
+    - [2.2.4.7](#ts_fmt_stmt_try) **`try`**: Any `try` keyword must be separated from the code block by a whitespace. If `catch` is present, it must not contain a whitespace before or after the group parenthesis, the same implies to the inside of the group. Usage of `finally` block is prohibited. <a id="ts_fmt_stmt_try"></a>
+      - **Example**:
+         ```ts
+         try {
+            throw 'An exception has occured!'
+         } catch(e) {
+            console.error(e)
+         }
+         ```
+
+- [3](#ts_es) **ECMAScript modules** <a id="ts_es"></a>
+  - [3.1](#ts_es_imports) **Imports** <a id="ts_es_imports"></a>
+    - [3.1.1](#ts_es_imports_fileext) **File extensions**: File extensions in module imports may be omitted, but it's not a requirement. <a id="ts_es_imports_fileext"></a>
+      - **Example**:
+         ```ts
+         import 'node:fs' /* node_modules import */
+         import './components/Component' /* local import */
+         import './package.json' /* local import, but with a file extension */
+         ```
+    - [3.1.2](#ts_es_imports_duplicate) **Duplicate imports**: Duplicate imports are prohibited, as they may confuse the reader and are unnecessary. <a id="ts_es_imports_duplicate"></a>
+      - **Example**:
+         ```ts
+         import { readFile } from 'node:fs'
+         import { readdir } from 'node:fs' /* unnecessary import, can be merged into the first `node:fs` import */
+         ```
+    - [3.1.3](#ts_es_imports_sl) **Standard Library**: Imports from the standard Node.JS library must start with a `node:` prefix to clarify that the module is built into the engine. <a id="ts_es_imports_sl"></a>
+     - **Example**:
+         ```ts 
+         import { userInfo, hostname } from 'node:os'
+
+         const userInformation = userInfo()
+         const machineName = hostname()
+
+         console.log(`${userInformation.username}@${machineName} ${userInformation.homedir}`)
+         ```
+  - [3.2](#ts_es_exports) **Exports** <a id="ts_es_exports"></a>
+    - [3.2.1](#ts_es_exports_default) **Default exports**: Default exports are prohibited. When importing a module with a default value, it must be named which may create confusion for the readers as to what the imported type is. <a id="ts_es_exports_default"></a>
+    - [3.2.2](#ts_es_exports_mut) **Export mutability**: Variables of an exported module must not be mutated directly, but through interfaces that module may provide. <a id="ts_es_exports_mut"></a>
+
+- [4](#ts_decl) **Declarations** <a id="ts_decl"></a>
+  - [4.1](#ts_decl_var) **Variables** <a id="ts_decl_var"></a>
+    - [4.1.1](#ts_decl_var_use) **Declaration before use**: Variables must be declared before being used. While the JavaScript Specification doesn't require that, doing so will make the project easier to read and detect undeclared variables that may become implied. <a id="ts_decl_var_use"></a>
+    - [4.1.2](#ts_decl_var_const) **Use of `const` and `let`**: Variables should be declared as constants by default, unless they need to be reassigned. <a id="ts_decl_var_const"></a>
+  - [4.2](#ts_decl_fn) **Functions** <a id="ts_decl_fn"></a>
+    - [4.2.1](#ts_decl_fn_inner) **Inner functions**: Inner functions should come after variable declarations as to clarify what variables are included in the outer function's scope.
+
 ## Credits
- - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for this document's format
- - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html#source-file-structure) for most rulesets.
+- [**Google's JavaScript Guide**](https://google.github.io/styleguide/jsguide.html) for some rulesets.
+- [**Douglas Crockford's Code Conventions for the JavaScript Programming Language**](https://www.crockford.com/code.html) for the rulesets 4.1.1 and 4.2.1.
+- [**Airbnb's JavaScript Guide**](https://github.com/airbnb/javascript) for the format of this document.
+- [**somedevfox**](https://github.com/somedevfox) for writing this guide.
