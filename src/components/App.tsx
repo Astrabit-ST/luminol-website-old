@@ -1,15 +1,15 @@
-import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import React from "react"
+import { BrowserRouter } from "react-router-dom"
 
-import XP from './XP'
-import Footer from './Footer';
+import { XP } from "./XP"
+import { Footer } from "./Footer"
 
-export default () => {
-	return (
-		<BrowserRouter>
-			<XP />
+export const Application = () => {
+    return (
+        <BrowserRouter>
+            <XP />
 
-			<Footer />
-		</BrowserRouter>
-	)
+            <Footer />
+        </BrowserRouter>
+    )
 }

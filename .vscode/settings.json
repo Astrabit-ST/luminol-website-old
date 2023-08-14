@@ -1,3 +1,6 @@
 {
-    "licenser.projectName": "Luminol"
+    "licenser.projectName": "Luminol",
+    "editor.detectIndentation": true,
+    "editor.indentSize": "tabSize",
+    "editor.tabSize": 4
 }

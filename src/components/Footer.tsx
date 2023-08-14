@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react"
 
-export default () => {
-	return (
-		<footer>
-			<p>Developed by Astrabit Studios.</p>
-		</footer>
-	)
+export const Footer = () => {
+    return (
+        <footer>
+            <p>Developed by Astrabit Studios.</p>
+        </footer>
+    )
 }
